@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #4a4a4a;
+        }
+
+        input {
+            box-sizing: border-box;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #357ab8;
+            transform: translateY(-2px);
+        }
+
+        .message {
+            display: none;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Contact Us</h1>
+    <form method="POST"
+          id="contactForm">
+        <input type="text" id="Name" name="Name" placeholder="Your Name" required>
+        <input type="email" id="Email" name="Email" placeholder="Your Email" required>
+        <input type="submit" value="Submit">
+    </form>
+    <div class="message" id="successMessage">Thank you for your submission!</div>
+</div>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+        const formData = new FormData(event.target);
+        // Your key here
+        const web_app_url = "*******************************************************************"
+        event.preventDefault(); // Prevent the default form submission
+        fetch(web_app_url,
+            {
+                method: 'POST',
+                body: formData,
+                muteHttpExceptions: true,
+            }).then((res) => console.log(res));
+
+        document.getElementById("successMessage").style.display = "block"; // Show success message
+        // this.reset(); // Reset the form fields
+    });
+</script>
+
+</body>
+</html>
